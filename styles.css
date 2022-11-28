@@ -1,0 +1,26 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: black;
+}
+
+.gameboard{
+    background-color: black;
+    height: 500px;
+    width: 500px;
+    display: grid;
+    grid-template:repeat(3,1fr)/repeat(3,1fr);
+    gap:10px;
+}
+
+.square{
+    background-color: antiquewhite;
+    height: 1fr;
+    width: 1fr;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
