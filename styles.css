@@ -1,27 +1,30 @@
-html{
+html,
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100%;
     width: 100%;
+    height: 100%;
     background-color: #DAD2D8;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
+    margin: 10px;
 }
 
-.gameboard{
+.gameboard {
     background-color: #DAD2D8;
     height: 100vh;
     width: 100vw;
     display: grid;
-    grid-template:repeat(3,1fr)/repeat(3,1fr);
+    grid-template: repeat(3, 1fr)/repeat(3, 1fr);
     gap: 3px;
-    background-color:#143642;
+    background-color: #143642;
 
 }
 
-.grid{
+.grid {
     background-color: #DAD2D8;
     height: 1fr;
     width: 1fr;
@@ -30,7 +33,33 @@ html{
     align-items: center;
     font-size: 100px;
 }
-div{
+
+div {
     color: #143642;
     font-size: 40px;
+}
+
+.result {
+    text-align: center;
+    font-size: 50px;
+    height: 120px;
+    width: 100vw;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button{
+    border:none;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #143642;
+    padding: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: yellow;
 }
