@@ -11,6 +11,8 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    color: #143642;
+    font-size: 40px;
 }
 
 .gameboard {
@@ -34,17 +36,19 @@ body {
     font-size: 100px;
 }
 
-div {
-    color: #143642;
-    font-size: 40px;
-}
-
 .result {
     text-align: center;
     font-size: 50px;
     height: 120px;
     width: 100vw;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header{
     display: flex;
     justify-content: center;
     align-items: center;
