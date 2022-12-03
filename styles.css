@@ -1,15 +1,15 @@
 html,
 body {
-    margin: 0;
+    margin: auto;
     padding: 0;
     box-sizing: border-box;
-    width: 100%;
     height: 100%;
     background-color: #DAD2D8;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
+    flex-wrap: nowrap;
     margin: 10px;
     color: #143642;
     font-size: 40px;
@@ -17,37 +17,33 @@ body {
 
 .gameboard {
     background-color: #DAD2D8;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
+    height: 90vw;
+    width: 90vw;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
     gap: 2px;
+    padding: 2px;
     background-color: #143642;
+    display: none;
 }
 
 .grid {
+    display: none;
     background-color: #DAD2D8;
-    height: 1fr;
-    width: 1fr;
+    height: auto;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 100px;
+    font-size: 50px;
 }
 
 .result {
     text-align: center;
-    font-size: 80px;
+    font-size: 50px;
     height: 120px;
     width: 100vw;
     padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.header{
+    flex: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,4 +62,8 @@ button{
 button:hover{
     cursor: pointer;
     background-color: yellow;
+}
+
+.footer{
+    height:20px;
 }
