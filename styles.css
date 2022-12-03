@@ -21,9 +21,8 @@ body {
     width: 100vw;
     display: grid;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
-    gap: 3px;
+    gap: 2px;
     background-color: #143642;
-
 }
 
 .grid {
@@ -38,7 +37,7 @@ body {
 
 .result {
     text-align: center;
-    font-size: 50px;
+    font-size: 80px;
     height: 120px;
     width: 100vw;
     padding: 20px;
@@ -61,6 +60,7 @@ button{
     font-size: 20px;
     color: #143642;
     padding: 10px;
+    margin-bottom: 20px;
 }
 
 button:hover{
