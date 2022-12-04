@@ -11,68 +11,16 @@
     let gridArray = [];
     let gridArrayAi = [];
     let gameOver = false;
+
     const winningCombos = [
         [0, 1, 2],
+        [0, 3, 6],
+        [0, 4, 8],
+        [1, 4, 7],
+        [2, 4, 6],
+        [2, 5, 8],
         [3, 4, 5],
         [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-
-        [0, 3, 4, 5],
-        [0, 3, 6, 2],
-        [0, 3, 4, 6],
-        [0, 6, 7, 8],
-        [0, 1, 4, 7],
-        [0, 2, 5, 8],
-        [0, 2, 4, 6],
-        [0, 2, 3, 6],
-
-        [1, 3, 4, 5],
-        [1, 6, 7, 8],
-        [1, 2, 5, 8],
-        [1, 2, 4, 6],
-
-        [2, 3, 4, 5],
-        [2, 3, 4, 6],
-        [2, 6, 7, 8],
-        [2, 1, 4, 7],
-        [2, 4, 6, 7],
-        [2, 4, 6, 8],
-        [2, 4, 5, 6],
-
-        [3, 6, 7, 8],
-        [3, 1, 4, 7],
-        [3, 2, 5, 8],
-        [3, 2, 4, 6],
-
-        [4, 3, 4, 5],
-        [4, 6, 7, 8],
-        [4, 1, 4, 7],
-        [4, 2, 5, 8],
-        [4, 2, 4, 6],
-        [0, 3, 4, 8],
-
-
-        [5, 3, 4, 5],
-        [5, 6, 7, 8],
-        [5, 1, 4, 7],
-        [5, 2, 5, 8],
-        [5, 2, 4, 6],
-
-        [0, 2, 4, 7, 8],
-        [0, 4, 5, 7, 8],
-        [0, 5, 6, 7, 8],
-        [2, 3, 6, 7, 8],
-        [2, 5, 6, 7, 8],
-        [1, 3, 4, 7, 8],
-        [1, 5, 6, 7, 8],
-        [1, 2, 5, 6, 8],
-        [2, 3, 5, 7, 8],
-
-        [1, 2, 5, 6, 7, 8],
     ]
 
     //Clear the board
@@ -100,8 +48,6 @@
         }
     }
 
-
-
     //Update the overhead display using the argument passed to the function.
     updateDisplay = (textToShow) => {
         result.innerText = textToShow;
@@ -116,10 +62,10 @@
                     square.innerText = computerMark;
                     square.dataset.ai = square.dataset.key;
                     updateDisplay("Your turn");
-                    computerVsComputer();
+                    //activate A.I mode
+                    // computerVsComputer();
                     currentAiState();
                     yourTurn = true;
-                    //activate A.I mode
                     break;
                 }
             }
@@ -141,29 +87,24 @@
                     currentAiState();
                 }
             }
-
             //Decide how long AI thinks before making the move
         }, 200)
     }
+
     //All of the code below is for tracking board state and determining winner   
-
-
     currentPlayerState = () => {
         grid.forEach(function (square) {
             gridArray.push(parseInt(square.id))
         });
         const filledArray = Array.from(gridArray).filter(item => !isNaN(item));
         gridArray = [];
-        winCheck(filledArray);
-        console.log("player " + filledArray)
+        winCheck(filledArray.sort());
         if (filledArray.length === 5 && gameOver === false) {
             updateDisplay("😎 DRAW! 🤖 ")
             gameOver = true;
             return
-
         }
     }
-
 
     currentAiState = () => {
         grid.forEach(function (square) {
@@ -171,19 +112,18 @@
         });
         const filledArrayAi = Array.from(gridArrayAi).filter(item => !isNaN(item));
         gridArrayAi = [];
-        winCheck(null, filledArrayAi);
-        console.log(filledArrayAi)
+        winCheck(null, filledArrayAi.sort());
     }
 
     winCheck = (humanCase, aiCase) => {
         winningCombos.forEach((winCase) => {
-            if (`${winCase}` == `${humanCase}`) {
+                if (`${humanCase}`.includes(`${winCase}`)) {
                 updateDisplay("🏆😎 YOU WIN! 😎🏆")
                 playerWins = true;
                 gameOver = true;
                 return
             }
-            if (`${winCase}` == `${aiCase}` && playerWins === false) {
+            if (`${aiCase}`.includes(`${winCase}`) && playerWins === false) {
                 updateDisplay("🏆🤖 I WIN! 🤖🏆")
                 aiWins = true;
                 gameOver = true;
