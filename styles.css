@@ -19,6 +19,8 @@ body {
     background-color: #DAD2D8;
     height: 90vw;
     width: 90vw;
+    max-width: 800px;
+    max-height: 800px;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
     gap: 2px;
     padding: 2px;
@@ -26,7 +28,7 @@ body {
     display: none;
 }
 
-.grid {
+span {
     display: none;
     background-color: #DAD2D8;
     height: auto;
@@ -39,7 +41,7 @@ body {
 
 .result {
     text-align: center;
-    font-size: 50px;
+    font-size: 45px;
     height: 120px;
     width: 100vw;
     padding: 20px;

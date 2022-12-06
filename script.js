@@ -1,91 +1,119 @@
-(() => {
-    const result = document.querySelector(".result");
-    const grid = document.querySelectorAll(".grid");
-    const gameBoard = document.querySelector(".gameboard");
-    const newGameButton = document.querySelector(".restart");
-    const playerMark = "😎";
-    const computerMark = "🤖"
-    let yourTurn = true;
-    let playerWins = false;
-    let aiWins = false;
-    let draw = false;
-    let gameOver = false;
+const gameBoardElement = document.querySelector(".gameboard");
+const result = document.querySelector(".result");
+const newGameButton = document.querySelector(".reset");
+const gridSquares = document.querySelectorAll("span");
 
-    const winningCombos = [[0, 1, 2], [0, 3, 6], [0, 4, 8], [1, 4, 7], [2, 4, 6], [2, 5, 8], [3, 4, 5], [6, 7, 8],]
+newGameButton.addEventListener("click", reset);
+gameBoardElement.addEventListener("click", onClick);
 
-    //Clear the board
-    newGameButton.addEventListener("click", newGame = () => {
-        gameBoard.style.display = "grid";
-        grid.forEach((square) => {
-            square.addEventListener("click", humanMove);
-            square.innerText = "";
-            square.id = "";
-            square.dataset.ai = "";
-        });
-        yourTurn = true;
-        playerWins = false;
-        aiWins = false;
-        gameOver = false;
-        updateDisplay("TIC TAC TOE");
-    });
+const gameBoard = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+];
 
-    //Place player mark on the clicked square and respond with computer move
-    const humanMove = (event) => {
-        if (event.target.innerText || !yourTurn || gameOver) return;
-        event.target.innerText = playerMark;
-        event.target.id = event.target.dataset.key;
-        yourTurn = false;
-        computerMove();
-        currentGameState();
-    };
+let currentPlayer = "X";
+let currentPlayerMark = "😎";
+let winner = "";
 
-    //Update the overhead display using the argument passed to the function.
-    updateDisplay = (textToShow) => {
-        result.innerText = textToShow;
-    }
+function onClick(event) {
+    if (event.target.innerText !== "") return;
+    const [row, col] = event.target.id.split("").map((x) => parseInt(x));
+    placeMove(row, col);
+    event.target.innerText = currentPlayerMark;
+    computerMove();
+}
 
-    //Make computer move after a moment of thought (for fun)
-    computerMove = () => {
-        updateDisplay("🤖 Hmm...")
-        setTimeout(() => {
-            for (const square of grid) {
-                if (square.innerText === "" && !playerWins) {
-                    square.innerText = computerMark;
-                    square.dataset.ai = square.dataset.key;
-                    updateDisplay("Your turn");
-                    currentGameState();
-                    yourTurn = true;
-                    break;
-                }
+function placeMove(row, col) {
+    if (gameBoard[row][col] === "X" || gameBoard[row][col] === "O") return;
+    gameBoard[row][col] = currentPlayer;
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    currentPlayerMark = currentPlayer === "X" ? "🤖" : "😎";
+    result.innerText = winCheck();
+}
+
+function computerMove() {
+    if (winner !== "") return;
+    result.innerText = "🤖 Hmm..."
+    setTimeout(() => {
+        const values = ["00", "01", "02", "10", "11", "12", "20", "21", "22"];
+        let computerNum = values[Math.floor(Math.random() * values.length)];
+        let [cRow, cCol] = computerNum.split("").map((x) => parseInt(x));
+        if (gameBoard[cRow][cCol] === "") {
+            placeMove(cRow, cCol);
+            const gridSquare = document.getElementById(`${computerNum}`);
+            gridSquare.innerText = currentPlayerMark;
+        } else {
+            computerMove();
+        }
+    }, 300)
+}
+
+function reset() {
+    gameBoard.forEach((row) => row.fill(""));
+    gridSquares.forEach((square) => (square.innerText = ""));
+    currentPlayer = "X";
+    winner = "";
+    currentPlayerMark = "😎";
+    result.innerText = "TIC TAC TOE";
+    gameBoardElement.style.display = "grid";
+    gameBoardElement.addEventListener("click", onClick);
+}
+
+function winCheck() {
+    for (let row = 0; row < gameBoard.length; row++) {
+        if (gameBoard[row][0] === gameBoard[row][1] && gameBoard[row][1] === gameBoard[row][2] && gameBoard[row][0] !== "") {
+            gameBoardElement.removeEventListener("click", onClick);
+            if (gameBoard[row][0] === "X") {
+                winner = "player"
+                return "🏆 YOU WIN! 🏆";
+            } else if (gameBoard[row][0] === "O") {
+                winner = "computer"
+                return "🤖 I WIN! 🤖";
             }
-            //Decide how long AI thinks before making the move
-        }, 200)
+        }
     }
 
-    //All of the code below is for tracking board state and determining winner   
-    const currentGameState = () => {
-        // Check player state
-        const filledArray = [...grid].map((square) => parseInt(square.id)).filter((item) => !isNaN(item));
-        if (winningCombos.some((state) => state.every((index) => filledArray.includes(index)))) {
-            updateDisplay("🏆😎 YOU WIN! 😎🏆")
-            playerWins = true;
-            gameOver = true;
-            return
-        }
-        else if (filledArray.length === 5 && gameOver === false) {
-            updateDisplay("😎 DRAW! 🤖 ")
-            gameOver = true;
-            draw = true;
-            return
-        }
-    
-        // Check AI state
-        const filledArrayAi = [...grid].map((square) => parseInt(square.dataset.ai)).filter((item) => !isNaN(item));
-        if (winningCombos.some((state) => state.every((index) => filledArrayAi.includes(index)))) {
-            updateDisplay("🏆🤖 I WIN! 🤖🏆")
-            aiWins = true;
-            gameOver = true;
-            return
+    for (let col = 0; col < gameBoard[0].length; col++) {
+        if (gameBoard[0][col] === gameBoard[1][col] && gameBoard[1][col] === gameBoard[2][col] && gameBoard[0][col] !== "") {
+            gameBoardElement.removeEventListener("click", onClick);
+            if (gameBoard[0][col] === "X") {
+                winner = "player"
+                return "🏆 YOU WIN! 🏆";
+            } else if (gameBoard[0][col] === "O") {
+                winner = "computer"
+                return "🤖 I WIN! 🤖";
+            }
         }
     }
-})();
+
+    if (gameBoard[0][0] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][2] && gameBoard[0][0] !== "") {
+        gameBoardElement.removeEventListener("click", onClick);
+        if (gameBoard[0][0] === "X") {
+            winner = "player"
+            return "🏆 YOU WIN! 🏆";
+        } else if (gameBoard[0][0] === "O") {
+            winner = "computer"
+            return "🤖 I WIN! 🤖";
+        }
+    }
+
+    if (gameBoard[0][2] === gameBoard[1][1] && gameBoard[1][1] === gameBoard[2][0] && gameBoard[0][2] !== "") {
+        gameBoardElement.removeEventListener("click", onClick);
+        if (gameBoard[0][2] === "X") {
+            winner = "player"
+            return "🏆 YOU WIN! 🏆";
+        } else if (gameBoard[0][2] === "O") {
+            winner = "computer"
+            return "🤖 I WIN! 🤖";
+        }
+    }
+
+    else if (gameBoard.every(row => row.every(cell => cell !== ""))) {
+        gameBoardElement.removeEventListener("click", onClick);
+        winner = "draw"
+        return "IT\"S A DRAW!";
+    }
+
+    return "YOUR TURN";
+}
