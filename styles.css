@@ -15,6 +15,28 @@ body {
     font-size: 40px;
 }
 
+.choices{
+    display: flex;
+    gap: 50px;
+}
+
+
+
+.dropdown{
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+select{
+    display: inline;
+    width: auto;
+    height: auto;
+    font-size: 25px;
+}
+
 .gameboard {
     background-color: #DAD2D8;
     height: 90vw;

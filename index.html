@@ -22,7 +22,35 @@
         <span id="21"></span>
         <span id="22"></span>
     </div>
-    <button class="reset">New game</button>
+    
+    <div class="choices">
+        <div class="dropdown">
+            <label for="choosePlayer1">PLAYER 1:</label>
+            <select name="players" id="choosePlayer1">
+                <option id=box value="human">Human: 😎</option>
+                <option id=box value="ai1">AI: 🙈</option>
+                <option id=box value="ai2">AI:🤓</option>
+                <option id=box value="ai3">AI: 🤖</option>
+            </select>
+        </div>
+        <h1 class="player1"></h1>
+    
+        <div class="dropdown">
+            <label for="choosePlayer2">PLAYER 2:</label>
+            <select name="players" id="choosePlayer2">
+                <option id=box value="human">Human: 😎</option>
+                <option id=box value="ai1">AI: 🙈</option>
+                <option id=box value="ai2">AI:🤓</option>
+                <option id=box value="ai3">AI: 🤖</option>
+                <h1 class="player2"></h1>
+            </select>
+        </div>
+</div>
+
+
+
+
+    <button class="newGame">New game</button>
 
     <script src="script.js"></script>
 </body>
