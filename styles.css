@@ -17,11 +17,10 @@ body {
 }
 
 .choices{
-    display: flex;
-    gap: 40px;
+    text-align: center;
+    gap: 2px;
+
 }
-
-
 
 .dropdown{
     font-size: 25px;
@@ -30,6 +29,10 @@ body {
     flex-direction: column;
     gap: 15px;
 }
+
+.player1,
+.player2{
+    font-size: 50px;}
 
 select{
     display: inline;
@@ -84,7 +87,7 @@ button{
     margin-bottom: 20px;
 }
 
-button:hover{
+button:active{
     cursor: pointer;
     background-color: yellow;
 }
