@@ -4,6 +4,8 @@ const REMATCH_BTN = document.querySelector(".rematch");
 const GRID_SQUARES = document.querySelectorAll("span");
 const GAME_BOARD_ELEMENT = document.querySelector(".gameboard");
 const DROPDOWN = document.querySelectorAll("select");
+const P1_DISPLAY = document.querySelector(".p1")
+const P2_DISPLAY = document.querySelector(".p2")
 
 const gameBoard = [
     ["", "", ""],
@@ -20,6 +22,7 @@ const player2 = {
 
 let gameInProgress = false;
 let player1turn = true;
+let winner;
 
 const human = (player) => {
     player.mark = (player.id === 1) ? "😎" : "🤓";
@@ -89,6 +92,7 @@ function winCheck(player) {
     if (gameBoard.some(row => row.every(cell => cell === player.mark))) {
         RESULT.innerText = `${player.mark} WINS!`;
         gameInProgress = false;
+        winner = player;
         return;
     }
 
@@ -97,6 +101,7 @@ function winCheck(player) {
         if (gameBoard.every(row => row[col] === player.mark)) {
             RESULT.innerText = `${player.mark} WINS!`;
             gameInProgress = false;
+            winner = player;
             return;
         }
     }
@@ -106,6 +111,7 @@ function winCheck(player) {
         gameBoard.every((row, index) => row[gameBoard.length - 1 - index] === player.mark)) {
         RESULT.innerText = `${player.mark} WINS!`;
         gameInProgress = false;
+        winner = player;
         return;
     }
 
@@ -113,18 +119,23 @@ function winCheck(player) {
     if (gameBoard.every(row => row.every(cell => cell !== ""))) {
         RESULT.innerText = "IT'S A DRAW!";
         gameInProgress = false;
+        winner = "draw";
     }
 }
 
 const newGame = () => {
+    console.log(winner)
     //Return to player selection screen
-    if (gameInProgress === true) {
+    if (gameInProgress === true || winner !== undefined) {
+        P1_DISPLAY.innerText = ('PLAYER 1:')
+        P2_DISPLAY.innerText = ('PLAYER 2:')
         DROPDOWN.forEach((menu) => menu.style.display = "flex");
         GAME_BOARD_ELEMENT.style.display = "";
+        RESULT.innerText = "PLAYER SELECTION";
         gameInProgress = false;
+        winner = undefined;
         return
     }
-
     rematch();
 
     //Assign chosen algorithm to each player
@@ -135,6 +146,13 @@ const newGame = () => {
     DROPDOWN.forEach((menu) => menu.style.display = "none");
 
     gameInProgress = true;
+
+    //Create player.mark from the chose algorithms
+    functionDict[player1.algorithm](player1);
+    functionDict[player2.algorithm](player2);
+
+    P1_DISPLAY.innerText = (`PLAYER 1: ${player1.mark}`)
+    P2_DISPLAY.innerText = (`PLAYER 2: ${player2.mark}`)
 
     //Reveal the game board
     GAME_BOARD_ELEMENT.style.display = "grid";
@@ -151,8 +169,6 @@ const rematch = () => {
     GRID_SQUARES.forEach((square) => (square.innerText = ""));
     RESULT.innerText = "TIC TAC TOE";
 }
-
-
 
 REMATCH_BTN.addEventListener("click", rematch);
 

@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
     <title>TIC TAC TOE</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="result">TIC TAC TOE</div>
+    <div class="result">PLAYER SELECTION</div>
     <div class="gameboard">
         <span id="00"></span>
         <span id="01"></span>
@@ -25,7 +25,7 @@
 
     <div class="choices">
         <div class="dropdown">
-            <label for="choosePlayer1">PLAYER 1:</label>
+            <label class="p1" for="choosePlayer1">PLAYER 1:</label>
             <select name="players" id="choosePlayer1">
                 <option id=box value="human">Human: 😎</option>
                 <option id=box value="ai1">AI: 🙈</option>
@@ -36,7 +36,7 @@
         <h1 class="player1"></h1>
 
         <div class="dropdown">
-            <label for="choosePlayer2">PLAYER 2:</label>
+            <label class="p2" for="choosePlayer2">PLAYER 2:</label>
             <select name="players" id="choosePlayer2">
                 <option id=box value="human">Human: 🤓</option>
                 <option id=box value="ai1">AI: 🤪</option>
