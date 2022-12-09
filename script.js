@@ -26,32 +26,129 @@ let winner;
 
 const human = (player) => {
     player.mark = (player.id === 1) ? "😎" : "🤓";
-    selectByClick(player);
+    const handleClick = (event) => {
+        if (event.target.innerText !== "" || gameInProgress === false) return;
+        let [row, col] = event.target.id.split("").map((x) => parseInt(x));
+        if (gameInProgress == false) return;
+
+        // Determine which player's turn it is and call the appropriate algorithm function
+        let player = player1turn ? player1 : player2;
+        functionDict[player.algorithm](player);
+
+        //Wait for input before proceeding
+        if (row == undefined) return;
+
+        //Place the current player mark on array and in HTML
+        gameBoard[row][col] = player.mark;
+        const coordinates = `${row}${col}`;
+        document.getElementById(coordinates).innerText = player.mark;
+
+        //Find out if the game is over
+        winCheck(player);
+
+        // Pass the turn to the other player and call the other player's algorithm function
+        player1turn = !player1turn;
+        let otherPlayer = player1turn ? player1 : player2;
+        functionDict[otherPlayer.algorithm](otherPlayer);
+    }
+    if (player1.algorithm !== "human" && player2.algorithm !== "human") return;
+    GAME_BOARD_ELEMENT.addEventListener("click", handleClick);
 }
 
 const ai1 = (player) => {
     player.mark = (player.id === 1) ? "🙈" : "🤪";
-    selectByClick(player);
+    if (player !== (player1turn ? player1 : player2) || !gameInProgress) return;
+    setTimeout(() => {
+
+        // Select a random empty spot in the gameBoard
+        const emptySpots = [];
+        gameBoard.forEach((row, rowIndex) => {
+            row.forEach((col, colIndex) => {
+                if (gameBoard[rowIndex][colIndex] === "") {
+                    emptySpots.push([rowIndex, colIndex]);
+                }
+            });
+        });
+        const randomIndex = Math.floor(Math.random() * emptySpots.length);
+        const [cRow, cCol] = emptySpots[randomIndex];
+
+        // Place the player's mark in the selected spot
+        gameBoard[cRow][cCol] = player.mark;
+        document.getElementById(`${cRow}${cCol}`).innerText = player.mark;
+
+        // Find out if the game is over
+        winCheck(player);
+
+        // Switch the player1turn variable and call the function again
+        player1turn = !player1turn;
+        player = player1turn ? player1 : player2;
+
+        functionDict[player.algorithm](player);
+    }, 300);
 }
 
 const ai2 = (player) => {
     player.mark = (player.id === 1) ? "💀" : "👽";
-    selectByClick(player);
+    if (player !== (player1turn ? player1 : player2) || !gameInProgress) return;
+    setTimeout(() => {
+
+        // Select a random empty spot in the gameBoard
+        const emptySpots = [];
+        gameBoard.forEach((row, rowIndex) => {
+            row.forEach((col, colIndex) => {
+                if (gameBoard[rowIndex][colIndex] === "") {
+                    emptySpots.push([rowIndex, colIndex]);
+                }
+            });
+        });
+        const randomIndex = Math.floor(Math.random() * emptySpots.length);
+        const [cRow, cCol] = emptySpots[randomIndex];
+
+        // Place the player's mark in the selected spot
+        gameBoard[cRow][cCol] = player.mark;
+        document.getElementById(`${cRow}${cCol}`).innerText = player.mark;
+
+        // Find out if the game is over
+        winCheck(player);
+
+        // Switch the player1turn variable and call the function again
+        player1turn = !player1turn;
+        player = player1turn ? player1 : player2;
+
+        functionDict[player.algorithm](player);
+    }, 300);
 }
 
 const ai3 = (player) => {
     player.mark = (player.id === 1) ? "🤖" : "👾";
-    selectByClick(player);
-}
+    if (player !== (player1turn ? player1 : player2) || !gameInProgress) return;
+    setTimeout(() => {
 
-//Add mark to clicked square
-const selectByClick = (player) => {
-    const handleClick = (event) => {
-        if (event.target.innerText !== "") return;
-        const [row, col] = event.target.id.split("").map((x) => parseInt(x));
-        placeMove(row, col, player.mark);
-    }
-    GAME_BOARD_ELEMENT.addEventListener("click", handleClick);
+        // Select a random empty spot in the gameBoard
+        const emptySpots = [];
+        gameBoard.forEach((row, rowIndex) => {
+            row.forEach((col, colIndex) => {
+                if (gameBoard[rowIndex][colIndex] === "") {
+                    emptySpots.push([rowIndex, colIndex]);
+                }
+            });
+        });
+        const randomIndex = Math.floor(Math.random() * emptySpots.length);
+        const [cRow, cCol] = emptySpots[randomIndex];
+
+        // Place the player's mark in the selected spot
+        gameBoard[cRow][cCol] = player.mark;
+        document.getElementById(`${cRow}${cCol}`).innerText = player.mark;
+
+        // Find out if the game is over
+        winCheck(player);
+
+        // Switch the player1turn variable and call the function again
+        player1turn = !player1turn;
+        player = player1turn ? player1 : player2;
+
+        functionDict[player.algorithm](player);
+    }, 300);
 }
 
 //Enable function calling using string containing function name
@@ -62,31 +159,6 @@ const functionDict = {
     ai3,
 };
 
-const placeMove = (row, col) => {
-    //Disable further input if the game is over
-    if (gameInProgress == false) return;
-
-    // Determine which player's turn it is and call the appropriate algorithm function
-    const player = player1turn ? player1 : player2;
-    functionDict[player.algorithm](player);
-
-    //Wait for input before proceeding
-    if (row == undefined) return;
-
-    //Place the current player mark on array and in HTML
-    gameBoard[row][col] = player.mark;
-    const coordinates = `${row}${col}`;
-    document.getElementById(coordinates).innerText = player.mark;
-
-    //Find out if the game is over
-    console.table(gameBoard);
-    winCheck(player);
-
-    // Invert the value of player1turn
-    player1turn = !player1turn;
-    return player1turn;
-};
-
 function winCheck(player) {
     // Check rows
     if (gameBoard.some(row => row.every(cell => cell === player.mark))) {
@@ -95,7 +167,6 @@ function winCheck(player) {
         winner = player;
         return;
     }
-
     // Check columns
     for (let col = 0; col < gameBoard.length; col++) {
         if (gameBoard.every(row => row[col] === player.mark)) {
@@ -105,7 +176,6 @@ function winCheck(player) {
             return;
         }
     }
-
     // Check diagonals
     if (gameBoard.every((row, index) => row[index] === player.mark) ||
         gameBoard.every((row, index) => row[gameBoard.length - 1 - index] === player.mark)) {
@@ -114,7 +184,6 @@ function winCheck(player) {
         winner = player;
         return;
     }
-
     // Check for draw
     if (gameBoard.every(row => row.every(cell => cell !== ""))) {
         RESULT.innerText = "IT'S A DRAW!";
@@ -124,7 +193,9 @@ function winCheck(player) {
 }
 
 const newGame = () => {
-    console.log(winner)
+    //Assign chosen algorithm to each player
+    player1.algorithm = document.getElementById("choosePlayer1").value
+    player2.algorithm = document.getElementById("choosePlayer2").value
     //Return to player selection screen
     if (gameInProgress === true || winner !== undefined) {
         P1_DISPLAY.innerText = ('PLAYER 1:')
@@ -136,40 +207,36 @@ const newGame = () => {
         winner = undefined;
         return
     }
-    rematch();
-
-    //Assign chosen algorithm to each player
-    player1.algorithm = document.getElementById("choosePlayer1").value
-    player2.algorithm = document.getElementById("choosePlayer2").value
+    player1turn = true;
+    gameBoard.forEach((row) => row.fill(""));
+    GRID_SQUARES.forEach((square) => (square.innerText = ""));
+    RESULT.innerText = "TIC TAC TOE";
 
     //Hide dropdown menu's after the game has been inititated
     DROPDOWN.forEach((menu) => menu.style.display = "none");
-
     gameInProgress = true;
 
     //Create player.mark from the chose algorithms
     functionDict[player1.algorithm](player1);
     functionDict[player2.algorithm](player2);
-
     P1_DISPLAY.innerText = (`PLAYER 1: ${player1.mark}`)
     P2_DISPLAY.innerText = (`PLAYER 2: ${player2.mark}`)
 
     //Reveal the game board
     GAME_BOARD_ELEMENT.style.display = "grid";
-    placeMove();
 }
-
 NEW_GAME_BTN.addEventListener("click", newGame);
 
 //Reset the game but keep the selected player algorithms
 const rematch = () => {
-    player1turn = true;
-    gameInProgress = true;
+    if (GAME_BOARD_ELEMENT.style.display !== "grid") return;
+    //Assign chosen algorithm to each player
     gameBoard.forEach((row) => row.fill(""));
     GRID_SQUARES.forEach((square) => (square.innerText = ""));
     RESULT.innerText = "TIC TAC TOE";
+    player1turn = true;
+    gameInProgress = true;
+    functionDict[player1.algorithm](player1);
+    functionDict[player2.algorithm](player2);
 }
-
 REMATCH_BTN.addEventListener("click", rematch);
-
-
