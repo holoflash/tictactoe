@@ -4,7 +4,6 @@ body {
     padding: 0;
     box-sizing: border-box;
     height: 100%;
-    width: 100%;
     background-color: #DAD2D8;
     display: flex;
     justify-content: space-around;
@@ -14,13 +13,14 @@ body {
     margin: 10px;
     color: #143642;
     font-size: 35px;
+    text-align: center;
     overflow: hidden
 }
 
 .choices{
     text-align: center;
     gap: 2px;
-
+    margin: 50px;
 }
 
 .dropdown{
@@ -43,6 +43,7 @@ select{
 }
 
 .gameboard {
+    margin: auto;
     background-color: #DAD2D8;
     height: 80vw;
     width: 80vw;
