@@ -20,7 +20,7 @@ body {
 .choices{
     text-align: center;
     gap: 2px;
-    margin: 50px;
+    margin-bottom:  50px;
 }
 
 .dropdown{
@@ -70,14 +70,6 @@ span {
 .result {
     text-align: center;
     font-size: 45px;
-    height: 120px;
-    width: 100vw;
-    padding: 20px;
-    flex: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
 button{
@@ -92,8 +84,4 @@ button{
 button:active{
     cursor: pointer;
     background-color: yellow;
-}
-
-.footer{
-    height:20px;
 }
