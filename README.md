@@ -1,7 +1,7 @@
 # TIC TAC TOE
-![Alt text](pic1.jpg)
-![Alt text](pic2.jpg)
-![Alt text](pic3.jpg)
+![Example1](pic1.png)
+![Example2](pic2.png)
+![Example3](pic3.png)
 
 This game is a classic game of tic-tac-toe, where two players take turns placing their mark on a 3x3 game board. 
 
