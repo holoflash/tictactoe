@@ -7,7 +7,7 @@ A classic game of tic-tac-toe, where two players take turns placing their mark o
 <img
   src="pic3.png"
   alt="Example 3"
-  width="400px"
+  width="500px"
   height="auto">
 
 The game has three different AI algorithms for players to choose from via the dropdown menus:
@@ -15,7 +15,7 @@ The game has three different AI algorithms for players to choose from via the dr
 <img
   src="pic2.png"
   alt="Example 3"
-  width="400px"
+  width="500px"
   height="auto">
 
 - AI 1: The computer places its mark on the first available empty square.  
