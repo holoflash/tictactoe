@@ -10,7 +10,15 @@
 </head>
 
 <body>
-    <div class="result">PLAYER SELECTION</div>
+    <div class="result">TIC TAC TOE</div>
+
+    <div class="info">
+        <p class="infoBits"><b>Human 😎/🤓:</b> <br>You choose where to place your mark by clicking on an empty square.</p>
+        <p class="infoBits"><b>AI 1 🤪/🙈:</b><br>The computer places its mark on the first available empty square.</p>
+        <p class="infoBits"><b>AI 2 💀/👽:</b><br>The computer places its mark on a random empty square.</p>
+        <p class="infoBits"><b>AI 3 🤖/👾:</b><br>The computer chooses a square using the minimax algorithm (coming soon).</p>
+    </div>
+
     <div class="gameboard">
         <span id="00"></span>
         <span id="01"></span>
@@ -34,8 +42,10 @@
             </select>
         </div>
 
-        <h1 class="player1"></h1>
-        <h1 class="player2"></h1>
+        <div class="score">
+            <h1 class="player1"></h1>
+            <h1 class="player2"></h1>
+        </div>
 
         <div class="dropdown">
             <label class="p2" for="choosePlayer2">PLAYER 2:</label>
@@ -47,9 +57,9 @@
             </select>
         </div>
     </div>
-    
+
     <div class="buttons">
-        <button class="newGame">New game</button>
+        <button class="newGame">New Game</button>
         <button class="rematch">Rematch</button>
     </div>
 

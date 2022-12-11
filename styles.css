@@ -1,49 +1,76 @@
-html,
+/* html,
 body {
-    margin: auto;
+    /* margin: 0px;
     padding: 0;
     box-sizing: border-box;
     height: 100%;
     background-color: #DAD2D8;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     flex-wrap: nowrap;
     margin: 10px;
     color: #143642;
-    font-size: 35px;
     text-align: center;
-    overflow: hidden
+    overflow: hidden 
+} 
+*/
+
+html,
+body {
+    height: 100%;
+    margin: 2px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+    background-color: #DAD2D8;
+    color: #143642;
+    overflow: hidden 
 }
 
-.choices{
+.info{
+    visibility: visible;
+    border: solid #143642 1px;
+    display: grid;
+    grid-template: repeat(2, 1fr)/repeat(2, 1fr);
+}
+
+.infoBits {
+    font-size: 15px;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+    margin: 0px;
+}
+
+.choices {
     text-align: center;
     gap: 2px;
-    margin-bottom:  50px;
+    margin: 10px;
 }
 
-.dropdown{
-    font-size: 25px;
+.dropdown {
+    font-size: 20px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 15px;
 }
 
-.player1,
-.player2{
-    font-size: 50px;}
-
-select{
+select {
     display: inline;
-    width: auto;
-    height: auto;
+    width: max-content;
+    height: 40px;
     font-size: 25px;
 }
 
 .gameboard {
-    margin: auto;
+    margin: 2px;
     background-color: #DAD2D8;
     height: 80vw;
     width: 80vw;
@@ -68,20 +95,43 @@ span {
 }
 
 .result {
+    height: 50px;
+    margin-bottom: 20px;
     text-align: center;
-    font-size: 45px;
+    font-size: 40px;
+    padding: 20px;
 }
 
-button{
-    border:none;
+button {
+    border: none;
     border-radius: 2px;
     font-size: 20px;
     color: #143642;
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 2px;
 }
 
-button:active{
+.score{
+    font-size: 20px;
+}
+button:active {
     cursor: pointer;
     background-color: yellow;
 }
+
+@media only screen and (min-width: 600px) {
+    .infoBits {
+        font-size: 20px;
+        text-align: center;
+        width: 300px;
+        height: 100px;
+        padding: 20px;
+    }
+    .result{
+        font-size: 70px;
+    }
+    
+    span{
+        font-size: 100px;
+    }
+  }
