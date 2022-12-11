@@ -53,8 +53,6 @@ const ai1 = (player) => {
     if (player.mark === undefined) { player.mark = (player.id === 1) ? "🙈" : "🤪"; }
     if (player !== (player1turn ? player1 : player2) || !gameInProgress) return;
     setTimeout(() => {
-
-        //A function that places the player mark on the first available slot
         let placed = false;
         for (let row = 0; row < gameBoard.length; row++) {
             for (let col = 0; col < gameBoard[row].length; col++) {
@@ -78,8 +76,6 @@ const ai2 = (player) => {
     if (player.mark === undefined) { player.mark = (player.id === 1) ? "💀" : "👽"; }
     if (player !== (player1turn ? player1 : player2) || !gameInProgress) return;
     setTimeout(() => {
-
-        // Select a random empty spot in the gameBoard
         const emptySpots = [];
         gameBoard.forEach((row, rowIndex) => {
             row.forEach((col, colIndex) => {
@@ -90,15 +86,9 @@ const ai2 = (player) => {
         });
         const randomIndex = Math.floor(Math.random() * emptySpots.length);
         const [cRow, cCol] = emptySpots[randomIndex];
-
-        // Place the player's mark in the selected spot
         gameBoard[cRow][cCol] = player.mark;
         document.getElementById(`${cRow}${cCol}`).innerText = player.mark;
-
-        // Find out if the game is over
         winCheck(player);
-
-        // Switch the player1turn variable and call the function again
         player1turn = !player1turn;
         player = player1turn ? player1 : player2;
 
@@ -111,7 +101,7 @@ const ai3 = (player) => {
     ai2(player)
 }
 
-//Enable function calling using string containing function name
+//Enable function calling using fuction name in string format
 const functionDict = {
     human,
     ai1,
