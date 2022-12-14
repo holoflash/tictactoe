@@ -1,69 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0 user-scalable=no"
+        />
+        <title>TIC TAC TOE</title>
+        <link rel="stylesheet" href="styles/styles.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
-    <title>TIC TAC TOE</title>
-    <link rel="stylesheet" href="styles/styles.css">
-</head>
+    <body>
+        <div class="result">TIC TAC TOE</div>
 
-<body>
-    <div class="result">TIC TAC TOE</div>
-
-    <div class="info">
-        <p class="infoBits"><b>Human 😎/🤓:</b> <br>You choose where to place your mark by clicking on an empty square.</p>
-        <p class="infoBits"><b>AI 1 🤪/🙈:</b><br>The computer places its mark on the first available empty square.</p>
-        <p class="infoBits"><b>AI 2 💀/👽:</b><br>The computer places its mark on a random empty square.</p>
-        <p class="infoBits"><b>AI 3 🤖/👾:</b><br>The computer chooses a square using the minimax algorithm (coming soon).</p>
-    </div>
-
-    <div class="gameboard">
-        <span id="00"></span>
-        <span id="01"></span>
-        <span id="02"></span>
-        <span id="10"></span>
-        <span id="11"></span>
-        <span id="12"></span>
-        <span id="20"></span>
-        <span id="21"></span>
-        <span id="22"></span>
-    </div>
-
-    <div class="choices">
-        <div class="dropdown">
-            <label class="p1" for="choosePlayer1">PLAYER 1:</label>
-            <select name="players" id="choosePlayer1">
-                <option id=box value="human">Human: 😎</option>
-                <option id=box value="ai1">AI 1: 🙈</option>
-                <option id=box value="ai2">AI 2:💀</option>
-                <option id=box value="ai3">AI 3: 🤖</option>
-            </select>
+        <div class="info">
+            <p class="infoBits">
+                <b>Human 😎/🤓:</b> <br />You choose where to place your mark by
+                clicking on an empty square.
+            </p>
+            <p class="infoBits">
+                <b>AI 1 🤪/🙈:</b><br />The computer places its mark on the
+                first available empty square.
+            </p>
+            <p class="infoBits">
+                <b>AI 2 💀/👽:</b><br />The computer places its mark on a random
+                empty square.
+            </p>
+            <p class="infoBits">
+                <b>AI 3 🤖/👾:</b><br />The computer chooses a square using the
+                minimax algorithm (coming soon).
+            </p>
         </div>
 
-        <div class="score">
-            <h1 class="player1"></h1>
-            <h1 class="player2"></h1>
+        <div class="gameboard">
+            <span id="00"></span>
+            <span id="01"></span>
+            <span id="02"></span>
+            <span id="10"></span>
+            <span id="11"></span>
+            <span id="12"></span>
+            <span id="20"></span>
+            <span id="21"></span>
+            <span id="22"></span>
         </div>
 
-        <div class="dropdown">
-            <label class="p2" for="choosePlayer2">PLAYER 2:</label>
-            <select name="players" id="choosePlayer2">
-                <option id=box value="human">Human: 🤓</option>
-                <option id=box value="ai1">AI 1: 🤪</option>
-                <option id=box value="ai2">AI 2:👽</option>
-                <option id=box value="ai3">AI 3: 👾</option>
-            </select>
+        <div class="choices">
+            <div class="dropdown">
+                <label class="p1" for="choosePlayer1">PLAYER 1:</label>
+                <select name="players" id="choosePlayer1">
+                    <option id="box" value="human">Human: 😎</option>
+                    <option id="box" value="ai1">AI 1: 🙈</option>
+                    <option id="box" value="ai2">AI 2:💀</option>
+                    <option id="box" value="ai3">AI 3: 🤖</option>
+                </select>
+            </div>
+
+            <div class="score">
+                <h1 class="player1"></h1>
+                <h1 class="player2"></h1>
+            </div>
+
+            <div class="dropdown">
+                <label class="p2" for="choosePlayer2">PLAYER 2:</label>
+                <select name="players" id="choosePlayer2">
+                    <option id="box" value="human">Human: 🤓</option>
+                    <option id="box" value="ai1">AI 1: 🤪</option>
+                    <option id="box" value="ai2">AI 2:👽</option>
+                    <option id="box" value="ai3">AI 3: 👾</option>
+                </select>
+            </div>
         </div>
-    </div>
 
-    <div class="buttons">
-        <button class="newGame">New Game</button>
-        <button class="rematch">Rematch</button>
-    </div>
+        <div class="buttons">
+            <button class="newGame">New Game</button>
+            <button class="rematch">Rematch</button>
+        </div>
 
-    <script type="module" src="scripts/script.js"></script>
-</body>
-
+        <script src="scripts/script.js"></script>
+    </body>
 </html>
