@@ -5,7 +5,7 @@ https://holoflash.github.io/tictactoe/
 A classic game of tic-tac-toe, where two players take turns placing their mark on a 3x3 game board. 
 
 <img
-  src="pic3.png"
+  src="images/pic3.png"
   alt="Example 3"
   width="500px"
   height="auto">
@@ -13,7 +13,7 @@ A classic game of tic-tac-toe, where two players take turns placing their mark o
 The game has three different AI algorithms for players to choose from via the dropdown menus:
 
 <img
-  src="pic2.png"
+  src="images/pic2.png"
   alt="Example 3"
   width="500px"
   height="auto">
