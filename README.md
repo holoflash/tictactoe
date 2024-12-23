@@ -1,30 +1,20 @@
-# TIC TAC TOE
-Live:
-https://holoflash.github.io/tictactoe/
+# Neo-Brutal Tic-Tac-Toe
 
-A classic game of tic-tac-toe, where two players take turns placing their mark on a 3x3 game board. 
+**Neo-Brutal Tic-Tac-Toe** is a minimalist version of the classic Tic-Tac-Toe game, designed with a raw, unrefined aesthetic inspired by Neo-Brutalism. The game allows you to play against another player or various AI difficulty levels.
 
-<img
-  src="images/pic3.png"
-  alt="Example 3"
-  width="500px"
-  height="auto">
+## Game Modes
 
-The game has three different AI algorithms for players to choose from via the dropdown menus:
+  1. **Player vs Player**: Two players take turns.
+  2. **Player vs 1st-Best-AI**: Play against an AI that chooses the first available square.
+  3. **Player vs Random-AI**: Play against an AI that chooses a random available square.
+  4. **Player vs Min-Max-AI**: Play against an AI that chooses a square using the Minimax algorithm.
 
-<img
-  src="images/pic2.png"
-  alt="Example 3"
-  width="500px"
-  height="auto">
+## How to Play
 
-- AI 1: The computer places its mark on the first available empty square.  
-- AI 2: The computer places its mark on a random empty square.  
- - AI 3: Uses the AI 2 algorithm until minimax is implemented.  
+1. **Choose Game Mode**: Select a mode using the buttons at the bottom.
+2. **Play**: Click on the empty cells to place your marker (X or O).
+3. **End of Game**: The game ends when someone wins or there's a tie. The score will update automatically.
 
-Alternatively, players can play local multiplayer by setting both players to use the 'human' algorithm. In this case, both players can take turns clicking on an empty square to place their mark on the game board.
-
-Pressing "New Game" starts the game. After each turn, the game checks for a winner. If there's a winner, the game ends and that player's score is incremented and displayed below the gameboard. The players can then start a new game or play a rematch.
 
 Ready to play? Let's go!  
 https://holoflash.github.io/tictactoe/
