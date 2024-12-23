@@ -3,13 +3,6 @@ let currentPlayer = 'X';
 let gameMode = null;
 const cells = document.querySelectorAll('.cell');
 const message = document.getElementById('message');
-let scoreX = 0;
-let scoreO = 0;
-const scoreDisplay = document.getElementById('score');
-
-function updateScore() {
-    scoreDisplay.textContent = `X: ${scoreX} | O: ${scoreO}`;
-}
 
 function startGame(mode) {
     board = Array(9).fill('');
@@ -145,12 +138,6 @@ function checkTie() {
 
 function endGame() {
     cells.forEach(cell => cell.removeEventListener('click', handleClick));
-    if (message.textContent.startsWith("X wins")) {
-        scoreX++;
-    } else if (message.textContent.startsWith("O wins")) {
-        scoreO++;
-    }
-    updateScore();
 }
 
 startGame('player');
