@@ -13,8 +13,7 @@
 
 1. **Choose Game Mode**: Select a mode using the buttons at the bottom.
 2. **Play**: Click on the empty cells to place your marker (X or O).
-3. **End of Game**: The game ends when someone wins or there's a tie. The score will update automatically.
-
+3. **End of Game**: The game ends when someone wins or there's a tie.
 
 Ready to play? Let's go!  
 https://holoflash.github.io/tictactoe/
