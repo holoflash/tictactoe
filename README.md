@@ -1,13 +1,7 @@
-# Neo-Brutal Tic-Tac-Toe
+# Min-Max Tic-Tac-Toe
 
-**Neo-Brutal Tic-Tac-Toe** is a minimalist version of the classic Tic-Tac-Toe game, designed with a raw, unrefined aesthetic inspired by Neo-Brutalism. The game allows you to play against another player or various AI difficulty levels.
-
-## Game Modes
-
-  1. **Player vs Player**: Two players take turns.
-  2. **Player vs 1st-Best-AI**: Play against an AI that chooses the first available square.
-  3. **Player vs Random-AI**: Play against an AI that chooses a random available square.
-  4. **Player vs Min-Max-AI**: Play against an AI that chooses a square using the Minimax algorithm.
+1. **Player vs Friend**: Play against a friend (or yourself) on the same device.
+2. **Player vs Min-Max-AI**: Play against an unbeatable AI that uses the Min-Max algorithm.
 
 ## How to Play
 

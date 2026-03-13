@@ -1,37 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neo-Brutal Tic-Tac-Toe</title>
+    <title>Min-Max Tic-Tac-Toe</title>
     <link rel="stylesheet" href="styles.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>Tic-Tac-Toe</h1>
     <div id="container">
-        <div id="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <div id="message"></div>
-        <div class="options">
-            <button onclick="startGame('player')">vs you</button>
-            <button onclick="startGame('ai-easy')">vs 1st-Best-AI</button>
-            <button onclick="startGame('ai-random')">vs Random-AI</button>
-            <button onclick="startGame('ai-minimax')">vs Min-Max-AI</button>
-        </div>
+      <div id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <div id="message"></div>
+      <div class="options">
+        <button onclick="startGame('player')">vs friend</button>
+        <button onclick="startGame('ai-minimax')">vs Min-Max-AI</button>
+      </div>
     </div>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

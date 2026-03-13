@@ -39,15 +39,7 @@ function handleClick(event) {
 }
 
 function aiMove() {
-    let move;
-    if (gameMode === 'ai-easy') {
-        move = board.indexOf('');
-    } else if (gameMode === 'ai-random') {
-        const availableMoves = board.reduce((acc, val, index) => val === '' ? [...acc, index] : acc, []);
-        move = availableMoves[Math.floor(Math.random() * availableMoves.length)];
-    } else if (gameMode === 'ai-minimax') {
-        move = minimax(board, 'O').index;
-    }
+    const move = minimax(board, 'O').index;
     if (move !== -1) {
         board[move] = 'O';
         cells[move].textContent = 'O';
